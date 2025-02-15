@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Winrate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sotong {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #fff;
+            /* Menambahkan border putih */
+        }
+        
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #555;
+            color: white;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .result {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        .error {
+            color: red;
+        }
+        
+        .output {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Hitung Winrate</h1>
+
+        <!-- Input untuk Win dan Lose -->
+        <label for="win">Total Win:</label>
+        <input type="number" id="win" placeholder="Masukkan jumlah kemenangan" />
+
+        <label for="lose">Total Lose:</label>
+        <input type="number" id="lose" placeholder="Masukkan jumlah kekalahan" />
+
+        <button id="hasil">Hitung Winrate</button>
+
+        <div id="resultText" class="result"></div>
+    </div>
+    <br>
+    <div class="sotong">
+        <div class="output">
+            <div><strong>Win:</strong> <span id="winOutput">0</span></div>
+            <div><strong>Lose:</strong> <span id="loseOutput">0</span></div>
+            <div><strong>Winrate:</strong> <span id="winrateOutput">0%</span></div>
+        </div>
+    </div>
+
+
+    <script>
+        // Variables
+        const hasil = document.querySelector("#hasil");
+        const resultText = document.querySelector("#resultText");
+        const winOutput = document.querySelector("#winOutput");
+        const loseOutput = document.querySelector("#loseOutput");
+        const winrateOutput = document.querySelector("#winrateOutput");
+
+        // Functions
+        function validation() {
+            const win = parseFloat(document.querySelector("#win").value);
+            const lose = parseFloat(document.querySelector("#lose").value);
+
+            if (isNaN(win) || isNaN(lose)) {
+                display("Field harus diisi bro.", true);
+            } else if (win < 0 || lose < 0) {
+                display("Field tidak boleh lebih kecil dari 0", true);
+            } else {
+                const totalMatches = win + lose;
+                const winrate = calculateWinrate(win, totalMatches);
+                displayResults(win, lose, winrate);
+            }
+        }
+
+        function display(text, isError) {
+            resultText.innerHTML = text;
+            if (isError) {
+                resultText.classList.add('error');
+            } else {
+                resultText.classList.remove('error');
+            }
+        }
+
+        function displayResults(win, lose, winrate) {
+            winOutput.textContent = win;
+            loseOutput.textContent = lose;
+            winrateOutput.textContent = `${winrate.toFixed(2)}%`;
+        }
+
+        function calculateWinrate(win, totalMatches) {
+            if (totalMatches === 0) return 0; // Menghindari pembagian dengan 0
+            return (win / totalMatches) * 100;
+        }
+
+        // Main
+        window.addEventListener("load", init);
+
+        function init() {
+            eventListener();
+        }
+
+        function eventListener() {
+            hasil.addEventListener("click", validation);
+        }
+    </script>
+</body>
+
+</html>

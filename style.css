@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #000;
+    color: #fff;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sotong {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #fff;
+    /* Border putih */
+}
+
+input,
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #555;
+    color: white;
+}
+
+button {
+    background-color: #4CAF50;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+}
+
+.output {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
